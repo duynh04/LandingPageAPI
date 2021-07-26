@@ -1,17 +1,17 @@
 package vn.fouridiots.product.model;
 
 import lombok.*;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Getter
-@Setter
+import javax.persistence.*;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Document(value = "product")
+@Table(name = "product")
+@Entity
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    private String name;
-    private float price;
 }
