@@ -4,14 +4,34 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
-@Table(name = "product")
 @Entity
+@Table(name = "product")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "category_id",
+            referencedColumnName = "id"
+    )
+    private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "power_id",
+            referencedColumnName = "id"
+    )
+    private Power power;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "flux_id",
+            referencedColumnName = "id"
+    )
+    private LuminousFlux luminousFlux;
 }
