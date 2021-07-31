@@ -5,7 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 
-//CREATE BY BACHCC
+/**
+ * @author BachCC
+ */
 @Entity
 @Table(name = "provider")
 @Getter
@@ -19,19 +21,19 @@ public class Provider {
     private Long id;
 
     @Column(name = "provider_name")
-    private String providerName;
+    private String name;
 
     @Column(name = "provider_email")
-    private String providerEmail;
+    private String email;
 
     @Column(name = "provider_address")
-    private String providerAddress;
+    private String address;
 
     @Column(name = "provider_taxCode")
-    private String providerTaxCode;
+    private String taxCode;
 
     @Column(name = "provider_status")
-    private String providerStatus;
+    private String status;
 
     @Column(name = "isDelete")
     private Boolean isDelete;

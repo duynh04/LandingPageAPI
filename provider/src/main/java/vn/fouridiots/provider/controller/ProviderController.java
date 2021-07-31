@@ -8,21 +8,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import vn.fouridiots.provider.dto.ProviderDto;
+import vn.fouridiots.provider.requestModel.ProviderRequestModel;
 import vn.fouridiots.provider.model.Provider;
 import vn.fouridiots.provider.repository.ProviderRepository;
 import vn.fouridiots.provider.service.impl.ProviderServiceImpl;
 
+/**
+ * @author BachCC
+ */
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/")
 public class ProviderController {
 
     @Autowired
-    ProviderServiceImpl providerService;
+    private ProviderServiceImpl providerService;
 
     @Autowired
-    ProviderRepository providerRepository;
+    private ProviderRepository providerRepository;
 
     @GetMapping("provider/List")
     public ResponseEntity<Page<Provider>> getAllProviderList(@RequestParam("1") int page,
@@ -70,10 +73,10 @@ public class ProviderController {
     }
 
     @PutMapping("provider/Edit/{id}")
-    public ResponseEntity<ProviderDto> updateProviderInfor(@PathVariable Long id,
-                                                        @RequestBody ProviderDto providerDto) {
-        providerService.editProvider(providerDto, id);
-        return new ResponseEntity<ProviderDto>(providerDto, HttpStatus.OK);
+    public ResponseEntity<ProviderRequestModel> updateProviderInfor(@PathVariable Long id,
+                                                                    @RequestBody ProviderRequestModel providerRequestModel) {
+        providerService.editProvider(providerRequestModel, id);
+        return new ResponseEntity<ProviderRequestModel>(providerRequestModel, HttpStatus.OK);
     }
 
     @PutMapping("provider/Delete/{id}")
