@@ -1,12 +1,22 @@
 package vn.fouridiots.product.model;
 
 import lombok.*;
-
 import javax.persistence.*;
 
+/**
+ * @author DUY
+ */
 @Data
 @Entity
 @Table(name = "product")
+@NamedEntityGraph(
+        name = "product-eager-fetch",
+        attributeNodes = {
+                @NamedAttributeNode("category"),
+                @NamedAttributeNode("power"),
+                @NamedAttributeNode("luminousFlux"),
+        }
+)
 public class Product {
 
     @Id
