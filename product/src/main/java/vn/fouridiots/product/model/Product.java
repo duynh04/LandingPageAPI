@@ -7,6 +7,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "product")
+@Getter
+@Setter
 public class Product {
 
     @Id
