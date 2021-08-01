@@ -1,6 +1,9 @@
 package vn.fouridiots.product.service;
 
 import vn.fouridiots.product.model.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import vn.fouridiots.product.model.Product;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,4 +20,8 @@ public interface ProductService {
      * @param luminousFlux giá trị luminous flux
      */
     List<Product> findProductBy(Optional<String> category, Optional<Short> power, Optional<Short> luminousFlux);
+
+    Page<Product> getAllProduct(Pageable pageable);
+
+    void createProduct(Product product);
 }
