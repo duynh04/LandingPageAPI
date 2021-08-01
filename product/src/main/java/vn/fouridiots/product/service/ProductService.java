@@ -1,17 +1,20 @@
 package vn.fouridiots.product.service;
 
-import com.querydsl.core.types.Predicate;
-import org.springframework.data.jpa.repository.EntityGraph;
 import vn.fouridiots.product.model.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author DUY
- * @author ThanhNT
  */
 public interface ProductService {
 
-    @EntityGraph(value = "product-eager-fetch", type = EntityGraph.EntityGraphType.FETCH)
-    Iterable<Product> findProductBy(Predicate predicate);
+    /**
+     * Tìm kiếm sản phẩm bằng category, power, luminous flux
+     * @param category tên category
+     * @param power giá trị power
+     * @param luminousFlux giá trị luminous flux
+     */
+    List<Product> findProductBy(Optional<String> category, Optional<Short> power, Optional<Short> luminousFlux);
 }
