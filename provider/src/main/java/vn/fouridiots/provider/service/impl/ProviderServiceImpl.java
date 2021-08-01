@@ -1,13 +1,14 @@
 package vn.fouridiots.provider.service.impl;
 
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import vn.fouridiots.provider.interfaceMapper.impl.ProviderMapperImpl;
 import vn.fouridiots.provider.requestModel.ProviderRequestModel;
 import vn.fouridiots.provider.model.Provider;
 import vn.fouridiots.provider.repository.ProviderRepository;
+import vn.fouridiots.provider.service.ProviderMapperService;
 import vn.fouridiots.provider.service.ProviderService;
 
 /**
@@ -41,8 +42,7 @@ public class ProviderServiceImpl implements ProviderService {
 
     @Override
     public Provider editProvider(ProviderRequestModel providerRequestModel, Long id) {
-        ProviderMapperImpl providerMapper = new ProviderMapperImpl();
-        return providerMapper.providerMapper(providerRequestModel, id);
+        return ProviderMapperService.INSTANCE.providerMapper(providerRequestModel);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package vn.fouridiots.provider.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,9 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "provider")
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 public class Provider {
 
     @Id
