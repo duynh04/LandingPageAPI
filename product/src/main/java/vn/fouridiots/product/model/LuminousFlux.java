@@ -1,12 +1,8 @@
 package vn.fouridiots.product.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.ComponentScan;
-
 import javax.persistence.*;
 
+import lombok.Data;
 /**
  * @author DUY
  */

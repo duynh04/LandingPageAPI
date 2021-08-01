@@ -1,7 +1,7 @@
 package vn.fouridiots.product.model;
 
-import lombok.*;
 import javax.persistence.*;
+import lombok.*;
 
 /**
  * @author DUY
