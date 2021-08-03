@@ -10,6 +10,7 @@
     <module>image</module>
     <module>product</module>
     <module>provider</module>
+    <module>exceptionhandler</module>
   </modules>
   <name>landing-page-api</name>
 </project>

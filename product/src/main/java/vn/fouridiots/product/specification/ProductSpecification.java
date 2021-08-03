@@ -1,5 +1,6 @@
 package vn.fouridiots.product.specification;
 
+import java.util.List;
 import java.util.Optional;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
@@ -20,42 +21,42 @@ import vn.fouridiots.product.model.Product_;
 public class ProductSpecification {
 
     /**
-     * Lọc sản phẩm bằng Category
+     * Category filter
      * @param name Category name
      */
-    public static Specification<Product> hasCategory(Optional<String> name) {
+    public static Specification<Product> hasCategory(List<String> name) {
         return (root, query, builder) -> {
-            if(name.isPresent()) {
-                Join<Product, Category> join = root.join(Product_.category, JoinType.LEFT);
-                return builder.equal(join.get(Category_.name), name.get());
+            if(name != null) {
+                Join<Product, Category> categoryJoin = root.join(Product_.category, JoinType.LEFT);
+                return categoryJoin.get(Category_.name).in(name);
             }
             return null;
         };
     }
 
     /**
-     * Lọc sản phẩm bằng power
+     * Power filter
      * @param power power value
      */
-    public static Specification<Product> hasPower(Optional<Short> power) {
+    public static Specification<Product> hasPower(List<Short> power) {
         return (root, query, builder) -> {
-            if(power.filter(f -> f > 0).isPresent()) {
-                Join<Product, Power> join = root.join(Product_.power, JoinType.LEFT);
-                return builder.equal(join.get(Power_.value), power.get());
+            if(power != null) {
+                Join<Product, Power> powerJoin = root.join(Product_.power, JoinType.LEFT);
+                return powerJoin.get(Power_.value).in(power);
             }
             return null;
         };
     }
 
     /**
-     * Lọc sản phẩm bằng luminous flux
+     * luminous flux filter
      * @param flux luminous flux value
      */
-    public static Specification<Product> hasFlux(Optional<Short> flux) {
+    public static Specification<Product> hasFlux(List<Short> flux) {
         return (root, query, builder) -> {
-            if(flux.filter(f -> f > 0).isPresent()) {
-                Join<Product, LuminousFlux> join = root.join(Product_.luminousFlux, JoinType.LEFT);
-                return builder.equal(join.get(LuminousFlux_.value), flux.get());
+            if(flux != null) {
+                Join<Product, LuminousFlux> luminousFluxJoin = root.join(Product_.luminousFlux, JoinType.LEFT);
+                return luminousFluxJoin.in(flux);
             }
             return null;
         };

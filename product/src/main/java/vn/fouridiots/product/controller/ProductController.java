@@ -1,7 +1,6 @@
 package vn.fouridiots.product.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import vn.fouridiots.product.config.ProductUriNaming;
 import vn.fouridiots.product.model.Product;
+import vn.fouridiots.product.requestmodel.SearchingParamRequestModel;
 import vn.fouridiots.product.service.ProductService;
 
 /**
@@ -20,32 +21,31 @@ import vn.fouridiots.product.service.ProductService;
  */
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("v1/api")
+@RequestMapping(ProductUriNaming.API_VERSION)
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
+
     /**
-     * Tìm kiếm sản phẩm API
-     * @param category tên category
-     * @param power giá trị power
-     * @param luminousFlux giá trị flux
-     * @return Danh sách sản phẩm tìm được
+     * Search Product By Filter
+     * @param params filter value
+     * @param page page number
+     * @return List of product corresponding to page number
      */
-    @GetMapping("/product/search")
-    public ResponseEntity<List<Product>> searchProduct(
-            @RequestParam Optional<String> category,
-            @RequestParam Optional<Short> power,
-            @RequestParam Optional<Short> luminousFlux
+    @GetMapping(ProductUriNaming.PRODUCT_FILTER)
+    public ResponseEntity<Page<Product>> searchProduct(
+            @RequestBody SearchingParamRequestModel params,
+            @PathVariable short page
     ) {
-        List<Product> products = productService.findProductBy(category, power, luminousFlux);
+        Page<Product> products = productService.findProductBy(params, page, params.getSize());
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping("/product/list")
-    public ResponseEntity<Page<Product>> getAllProductList(@RequestParam("1") int page,
-                                                           @RequestParam("10") int size){
+    @GetMapping(ProductUriNaming.PRODUCT)
+    public ResponseEntity<Page<Product>> getAllProductList(@RequestParam(defaultValue = "1") int page,
+                                                           @RequestParam(defaultValue = "10") int size){
         Pageable pageable = PageRequest.of(page, size);
         Page<Product> products = productService.getAllProduct(pageable);
         if (products == null){
@@ -54,7 +54,7 @@ public class ProductController {
         return ResponseEntity.ok().body(products);
     }
 
-    @PostMapping("/product/create")
+    @PostMapping(ProductUriNaming.PRODUCT)
     public ResponseEntity<Product> createProduct(@Validated @RequestBody Product product){
         try {
             productService.createProduct(product);

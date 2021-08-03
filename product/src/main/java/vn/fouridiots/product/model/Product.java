@@ -17,6 +17,7 @@ import lombok.*;
                 @NamedAttributeNode("luminousFlux"),
         }
 )
+
 public class Product {
 
     @Id
