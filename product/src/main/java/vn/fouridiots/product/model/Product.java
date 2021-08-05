@@ -5,6 +5,7 @@ import lombok.*;
 
 /**
  * @author DUY
+ * @author ThanhHN
  */
 @Data
 @Entity
@@ -15,6 +16,7 @@ import lombok.*;
                 @NamedAttributeNode("category"),
                 @NamedAttributeNode("power"),
                 @NamedAttributeNode("luminousFlux"),
+                @NamedAttributeNode("productImage")
         }
 )
 
@@ -45,4 +47,23 @@ public class Product {
             referencedColumnName = "id"
     )
     private LuminousFlux luminousFlux;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "image_id",
+            referencedColumnName = "id"
+    )
+    private ProductImage productImage;
+
+    @Column(length = 50)
+    private String name;
+
+    @Column(length = 250)
+    private String description;
+
+    @Column
+    private int amount;
+
+    @Column(length = 50)
+    private String Ip;
 }

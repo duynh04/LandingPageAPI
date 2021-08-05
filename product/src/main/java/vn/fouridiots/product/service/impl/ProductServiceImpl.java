@@ -16,7 +16,7 @@ import vn.fouridiots.product.specification.ProductSpecification;
 
 /**
  * @author DUY
- * @author ThanhNT
+ * @author ThanhHN
  */
 @Service
 public class ProductServiceImpl implements ProductService {
