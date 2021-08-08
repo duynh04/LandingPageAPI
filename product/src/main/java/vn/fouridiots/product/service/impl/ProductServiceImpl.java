@@ -7,7 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import vn.fouridiots.product.model.Product;
+import org.springframework.validation.BindingResult;
+import vn.fouridiots.product.entity.Product;
 import vn.fouridiots.product.repository.ProductRepository;
 import vn.fouridiots.product.requestmodel.SearchingParamRequestModel;
 import vn.fouridiots.product.service.ProductService;
@@ -40,7 +41,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void createProduct(Product product) {
+    public void createProduct(Product product, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()){
+
+        }
         product = new Product();
         this.productRepository.save(product);
     }

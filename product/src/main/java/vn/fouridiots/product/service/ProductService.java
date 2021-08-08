@@ -1,11 +1,10 @@
 package vn.fouridiots.product.service;
 
-import java.util.Optional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import vn.fouridiots.product.model.Product;
+import org.springframework.validation.BindingResult;
+import vn.fouridiots.product.entity.Product;
 import vn.fouridiots.product.requestmodel.SearchingParamRequestModel;
 
 /**
@@ -25,5 +24,5 @@ public interface ProductService {
 
     Page<Product> getAllProduct(Pageable pageable);
 
-    void createProduct(Product product);
+    void createProduct(Product product, BindingResult bindingResult);
 }

@@ -1,18 +1,17 @@
 package vn.fouridiots.product.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import vn.fouridiots.product.config.ProductUriNaming;
-import vn.fouridiots.product.model.Product;
+import vn.fouridiots.product.entity.Product;
 import vn.fouridiots.product.requestmodel.SearchingParamRequestModel;
 import vn.fouridiots.product.service.ProductService;
 
@@ -55,9 +54,9 @@ public class ProductController {
     }
 
     @PostMapping(ProductUriNaming.PRODUCT)
-    public ResponseEntity<Product> createProduct(@Validated @RequestBody Product product){
+    public ResponseEntity<Product> createProduct(@Validated @RequestBody Product product, BindingResult bindingResult){
         try {
-            productService.createProduct(product);
+            productService.createProduct(product, bindingResult);
             return ResponseEntity.ok().body(product);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

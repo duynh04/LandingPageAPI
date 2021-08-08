@@ -1,17 +1,15 @@
 package vn.fouridiots.product.specification;
 
 import java.util.List;
-import java.util.Optional;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import vn.fouridiots.product.model.*;
-import vn.fouridiots.product.model.Category_;
-import vn.fouridiots.product.model.LuminousFlux_;
-import vn.fouridiots.product.model.Power_;
-import vn.fouridiots.product.model.Product_;
+import vn.fouridiots.product.entity.*;
+import vn.fouridiots.product.entity.Category_;
+import vn.fouridiots.product.entity.Power_;
+import vn.fouridiots.product.entity.Product_;
 
 
 /**

@@ -1,20 +1,19 @@
-package vn.fouridiots.product.model;
+package vn.fouridiots.product.entity;
 
 import javax.persistence.*;
 
 import lombok.Data;
-
 /**
  * @author DUY
  */
 @Data
 @Entity
-@Table(name = "power")
-public class Power {
+@Table(name = "luminous_flux")
+public class LuminousFlux {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column
     private short value;

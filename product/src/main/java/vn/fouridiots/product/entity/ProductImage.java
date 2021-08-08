@@ -1,4 +1,4 @@
-package vn.fouridiots.product.model;
+package vn.fouridiots.product.entity;
 
 import lombok.Data;
 
